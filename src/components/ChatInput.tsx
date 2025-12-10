@@ -38,7 +38,7 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
 
   return (
     <form onSubmit={handleSubmit} className="relative">
-      <div className="flex items-end gap-2 p-2 bg-card rounded-2xl shadow-float border border-border/50">
+      <div className="flex items-end gap-3 p-3 input-glass rounded-2xl shadow-lg transition-all focus-within:ring-2 focus-within:ring-primary/20">
         <textarea
           ref={textareaRef}
           value={message}
@@ -48,8 +48,8 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
           disabled={disabled}
           rows={1}
           className={cn(
-            "flex-1 resize-none bg-transparent px-3 py-2.5 text-sm",
-            "placeholder:text-muted-foreground/60",
+            "flex-1 resize-none bg-transparent px-1 py-1.5 text-sm",
+            "placeholder:text-muted-foreground/50",
             "focus:outline-none",
             "disabled:opacity-50 disabled:cursor-not-allowed",
             "max-h-[120px]"
@@ -60,11 +60,10 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
           size="icon"
           disabled={!message.trim() || disabled}
           className={cn(
-            "h-10 w-10 rounded-xl shrink-0",
+            "h-9 w-9 rounded-xl shrink-0 transition-all duration-300",
             "bg-primary hover:bg-primary/90",
-            "disabled:opacity-40",
-            "transition-all duration-200",
-            message.trim() && !disabled && "shadow-glow animate-pulse-glow"
+            "disabled:opacity-30",
+            message.trim() && !disabled && "glow-effect animate-pulse-glow"
           )}
         >
           <SendHorizontal className="h-4 w-4" />

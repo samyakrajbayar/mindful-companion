@@ -5,32 +5,30 @@ interface QuickPromptsProps {
 }
 
 const prompts = [
-  { emoji: "😔", text: "I'm feeling stressed about exams" },
-  { emoji: "😴", text: "I haven't been sleeping well" },
-  { emoji: "🤔", text: "I need help managing my anxiety" },
-  { emoji: "💭", text: "I just need someone to talk to" },
+  { emoji: "😔", text: "I'm feeling stressed" },
+  { emoji: "😴", text: "Can't sleep well" },
+  { emoji: "😰", text: "Feeling anxious" },
+  { emoji: "💬", text: "Just need to talk" },
 ];
 
 export function QuickPrompts({ onSelect }: QuickPromptsProps) {
   return (
-    <div className="flex flex-wrap gap-2 justify-center">
+    <div className="flex flex-wrap gap-2 justify-center stagger-children">
       {prompts.map((prompt, index) => (
         <button
           key={index}
           onClick={() => onSelect(prompt.text)}
           className={cn(
             "inline-flex items-center gap-2 px-4 py-2.5",
-            "bg-card hover:bg-accent/50",
-            "border border-border/50 hover:border-primary/30",
+            "glass-card hover:bg-accent/30",
+            "hover:border-primary/30",
             "rounded-full text-sm text-muted-foreground hover:text-foreground",
-            "transition-all duration-200",
-            "shadow-soft hover:shadow-float",
-            "animate-fade-in-up"
+            "transition-all duration-300",
+            "hover:scale-105 hover:glow-effect-subtle"
           )}
-          style={{ animationDelay: `${index * 100}ms` }}
         >
-          <span>{prompt.emoji}</span>
-          <span>{prompt.text}</span>
+          <span className="text-base">{prompt.emoji}</span>
+          <span className="font-medium">{prompt.text}</span>
         </button>
       ))}
     </div>
