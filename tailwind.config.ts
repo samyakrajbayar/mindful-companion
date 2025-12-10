@@ -14,9 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["Outfit", "system-ui", "sans-serif"],
-        body: ["Outfit", "system-ui", "sans-serif"],
-        serif: ["Merriweather", "Georgia", "serif"],
+        sans: ["Inter", "system-ui", "sans-serif"],
+        mono: ["IBM Plex Mono", "Menlo", "monospace"],
       },
       colors: {
         border: "hsl(var(--border))",

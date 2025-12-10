@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { Heart, User } from "lucide-react";
+import { Bot, User } from "lucide-react";
 
 interface ChatMessageProps {
   role: "user" | "assistant";
@@ -13,39 +13,39 @@ export function ChatMessage({ role, content, isStreaming }: ChatMessageProps) {
   return (
     <div
       className={cn(
-        "flex gap-3 animate-fade-in-up",
+        "flex gap-3 animate-message-enter",
         isUser ? "flex-row-reverse" : "flex-row"
       )}
     >
       {/* Avatar */}
       <div
         className={cn(
-          "flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center",
+          "flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center transition-all",
           isUser
             ? "bg-primary/10 text-primary"
-            : "gradient-hero text-primary-foreground shadow-soft"
+            : "bg-primary text-primary-foreground glow-effect-subtle"
         )}
       >
         {isUser ? (
           <User className="w-4 h-4" />
         ) : (
-          <Heart className="w-4 h-4" />
+          <Bot className="w-4 h-4" />
         )}
       </div>
 
       {/* Message bubble */}
       <div
         className={cn(
-          "max-w-[80%] rounded-2xl px-4 py-3 shadow-soft",
+          "max-w-[85%] md:max-w-[75%] rounded-2xl px-4 py-3 transition-all",
           isUser
-            ? "gradient-message-user text-primary-foreground rounded-br-sm"
-            : "gradient-message-ai text-foreground rounded-bl-sm border border-border/50"
+            ? "chat-bubble-user rounded-br-md"
+            : "chat-bubble-ai rounded-bl-md"
         )}
       >
         <p className="text-sm leading-relaxed whitespace-pre-wrap">
           {content}
           {isStreaming && (
-            <span className="inline-block w-1.5 h-4 ml-1 bg-current animate-pulse rounded-sm" />
+            <span className="inline-block w-1.5 h-4 ml-1 bg-primary/80 cursor-blink rounded-sm" />
           )}
         </p>
       </div>
@@ -55,15 +55,15 @@ export function ChatMessage({ role, content, isStreaming }: ChatMessageProps) {
 
 export function TypingIndicator() {
   return (
-    <div className="flex gap-3 animate-fade-in-up">
-      <div className="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center gradient-hero text-primary-foreground shadow-soft">
-        <Heart className="w-4 h-4" />
+    <div className="flex gap-3 animate-message-enter">
+      <div className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center bg-primary text-primary-foreground glow-effect-subtle">
+        <Bot className="w-4 h-4" />
       </div>
-      <div className="gradient-message-ai rounded-2xl rounded-bl-sm px-4 py-3 shadow-soft border border-border/50">
-        <div className="flex gap-1.5">
-          <span className="w-2 h-2 rounded-full bg-muted-foreground/60 typing-dot" />
-          <span className="w-2 h-2 rounded-full bg-muted-foreground/60 typing-dot" />
-          <span className="w-2 h-2 rounded-full bg-muted-foreground/60 typing-dot" />
+      <div className="chat-bubble-ai rounded-2xl rounded-bl-md px-4 py-3">
+        <div className="flex gap-1.5 items-center h-5">
+          <span className="w-2 h-2 rounded-full bg-primary/60 typing-dot" />
+          <span className="w-2 h-2 rounded-full bg-primary/60 typing-dot" />
+          <span className="w-2 h-2 rounded-full bg-primary/60 typing-dot" />
         </div>
       </div>
     </div>
